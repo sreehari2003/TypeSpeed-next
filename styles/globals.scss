@@ -1,0 +1,136 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  overflow: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* keyboard styles */
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,600);
+
+:root {
+  --black: #000;
+  --colour1: #222;
+  --colour2: #333;
+  --colour3: #444;
+}
+
+.cover {
+  background-color: var(--black);
+  font: 300 12px "Open Sans", sans-serif;
+  color: black;
+  user-select: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 0;
+  height: 60vh;
+}
+
+.keyboard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 90%;
+  height: 400px;
+  min-width: 400px;
+  max-width: 1024px;
+}
+
+.row {
+  list-style-type: none;
+  display: flex;
+  padding: 0;
+  margin: 0 0 7px;
+  line-height: 50px;
+}
+
+.row li {
+  flex: 1;
+  margin: 0 6px 0 0;
+  text-align: center;
+  background: white;
+  color: black;
+  border-radius: 4px;
+  transition: 0.1s;
+  align-items: center;
+  align-content: center;
+  height: 57px;
+  border: 2px solid rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+}
+
+li:active,
+li.selected {
+  transform: translateY(1px);
+  background: var(--colour2);
+  box-shadow: 0 1px 0 var(--black);
+  animation: vibrate 0.3s linear infinite both;
+}
+
+////Input.js
+.bar {
+  display: flex;
+  justify-content: center;
+  width: 70% !important;
+  margin: 20px;
+  margin-top: 25px;
+}
+.field {
+  height: 12vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btn-cover {
+  margin-right: 200px;
+  background: red;
+}
+
+//navbar
+.nav {
+  height: 10vh;
+  width: 100%;
+  background-color: #001d3d;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.btn {
+  background: #ffd60a !important;
+  padding-top: 10px !important;
+  margin-left: 15px !important;
+}
+h1 {
+  color: white;
+}
+
+//text
+
+.text-box {
+  height: 22vh;
+  background: #ff5c8a;
+  display: flex;
+  flex-wrap: wrap;
+}
+.text {
+  margin: 10px 12px 0;
+  font-size: 20px;
+  font-family: sans-serif;
+  &-active {
+    color: white;
+    text-transform: uppercase;
+  }
+}
