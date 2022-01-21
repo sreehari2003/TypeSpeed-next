@@ -22,7 +22,7 @@ const Navbar = () => {
       } catch (e) {
         // alert("could not sign in");
         //CONSOLE
-        console.log("sad");
+        console.log(e);
         //need to handele the error
       }
     };
