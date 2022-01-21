@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import InfoContext from "../context/ScoreContext";
 import classes from "./styles/Profile.module.scss";
+import Error from "next/error";
 const Profile = () => {
   const ctx = useContext(InfoContext);
   const dt = ctx.data;
