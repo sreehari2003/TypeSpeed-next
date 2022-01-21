@@ -78,7 +78,11 @@ li.selected {
   box-shadow: 0 1px 0 var(--black);
   animation: vibrate 0.3s linear infinite both;
 }
-
+.active {
+  background: black !important;
+  color: white !important;
+  border: 1px solid white !important;
+}
 ////Input.js
 .bar {
   display: flex;
@@ -121,16 +125,58 @@ h1 {
 
 .text-box {
   height: 22vh;
-  background: #ff5c8a;
+  // background: #ff5c8a;
+  background: white;
   display: flex;
   flex-wrap: wrap;
+  border: 2px solid black;
 }
 .text {
   margin: 10px 12px 0;
   font-size: 20px;
   font-family: sans-serif;
   &-active {
-    color: white;
+    color: red;
     text-transform: uppercase;
   }
+}
+
+h2 {
+  text-align: center;
+  color: #001d3d;
+  font-size: 25px;
+  background-color: yellow;
+  border-radius: 10px;
+  margin-bottom: 18px;
+}
+.modalBox {
+  min-height: 420px;
+  border-radius: 10px;
+  border: 1px solid black;
+  background: #d8e2dc;
+  // overflow-y: scroll;
+}
+.md {
+  margin-top: 70px;
+  display: flex;
+  flex-direction: column;
+}
+.md li {
+  padding-bottom: 40px;
+  font-size: 20px;
+  font-family: sans-serif;
+}
+h3 {
+  text-align: center;
+}
+.btnOk {
+  margin-top: 10px !important;
+  width: 20% !important;
+  display: inline-block !important;
+  // color: red !important;
+}
+.d {
+  // background: red;
+  display: grid;
+  place-items: center;
 }

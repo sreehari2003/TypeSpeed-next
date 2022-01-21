@@ -1,34 +1,6 @@
-import React, { useRef, useContext, useEffect, useState } from "react";
-import InfoContextProvider from "../context/ScoreContext";
-
-const firstRow = [
-  "`",
-  "1",
-  "2",
-  "3",
-  "4",
-  "5",
-  "6",
-  "7",
-  "8",
-  "9",
-  "0",
-  "-",
-  "=",
-  "back",
-];
+import React from "react";
 
 const KeyBoard = () => {
-  const context = useContext(InfoContextProvider);
-  const currentKeyPress = context.key;
-  useEffect(() => {}, [currentKeyPress]);
-
-  firstRow.map((el) => {
-    if (currentKeyPress === el) {
-      console.log("haha");
-    }
-    return;
-  });
   return (
     <div className="cover">
       <div className="keyboard">

@@ -1,0 +1,28 @@
+.profile {
+  height: 90vh;
+  background: #ffb3c1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.box {
+  border-radius: 12px;
+  width: 70%;
+  height: 80vh;
+  background: white;
+  h1 {
+    color: black;
+    text-align: center;
+    margin-bottom: 90px;
+  }
+}
+.name {
+  display: grid;
+  place-items: center;
+  img {
+    border-radius: 200px;
+  }
+  h2 {
+    background: none;
+  }
+}
