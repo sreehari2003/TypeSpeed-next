@@ -1,8 +1,23 @@
-import React from "react";
+import React, { useEffect, useContext } from "react";
 import Profile from "../components/Profile";
 import Head from "next/head";
-
+import InfoContext from "../context/ScoreContext";
+import { useRouter } from "next/router";
 const profile = () => {
+  const router = useRouter();
+  const ctx = useContext(InfoContext);
+  useEffect(() => {
+    if (ctx.login) {
+      console.log("loggedin");
+    } else {
+      router.push("/");
+    }
+  });
+
+  if (!ctx.login) {
+    return null;
+  }
+
   return (
     <>
       <Head>
