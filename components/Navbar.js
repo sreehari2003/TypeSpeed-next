@@ -15,7 +15,6 @@ const Navbar = () => {
         const res = await signInWithPopup(authentication, provider);
         context.upData(res);
         //console log need to remove
-        console.log(res);
         setLog("Log Out");
         context.log();
         if (!res.ok) throw new Error("Couldn't sign'");
