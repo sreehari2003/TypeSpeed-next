@@ -9,7 +9,6 @@
 }
 
 .modal {
-  height: 80vh;
   position: fixed;
   top: 8.5vh;
   left: 5%;
@@ -22,8 +21,23 @@
   animation: slide-down 300ms ease-out forwards;
 }
 
+@media (min-width: 500px) {
+  .modal {
+    width: 30rem;
+    width: 40rem;
+    left: calc(50% - 20rem);
+    // background: red;
+  }
+}
+@media (min-height: 710px) {
+  .modal {
+    width: 40rem;
+    left: calc(50% - 20rem);
+  }
+}
 @media (min-width: 768px) {
   .modal {
+    // background: blue;
     width: 40rem;
     left: calc(50% - 20rem);
   }
@@ -38,4 +52,9 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+.box {
+  margin-left: 30px;
+  background-color: red;
 }
