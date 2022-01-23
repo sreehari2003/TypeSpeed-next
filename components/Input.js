@@ -81,6 +81,7 @@ const Input = () => {
         setDis(false);
         context.setInput("");
         setSentPost(false);
+
       }, [5000]);
       context.changeKey("");
       setSentPost(true);
