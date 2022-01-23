@@ -32,6 +32,9 @@ const leaderboards = () => {
       </div>
     );
   } else {
+    let arr = dt.sort((a, b) => {
+      return b.score - a.score;
+    });
     return (
       <div className={classes.leader}>
         <h1>LeaderBoards</h1>
@@ -45,7 +48,7 @@ const leaderboards = () => {
                   <th>Score</th>
                   <th>Profile</th>
                 </tr>
-                {dt.map((el, index) => (
+                {arr.map((el, index) => (
                   <tr key={index}>
                     <td>{index + 1}</td>
                     <td>{el.name}</td>

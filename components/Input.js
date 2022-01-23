@@ -78,15 +78,13 @@ const Input = () => {
       setTimeout(() => {
         setTm(30);
         context.reStart();
-        // setDis(false);
+        setDis(false);
         context.setInput("");
-        setTimeout(() => {
-          setSentPost(false);
-        }, [1000 * 10]);
+        setSentPost(false);
       }, [5000]);
       context.changeKey("");
       setSentPost(true);
-    }, [15000 * 0.5]);
+    }, [15000 * 2]);
   };
   return (
     <div>
