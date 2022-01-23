@@ -20,7 +20,6 @@ const Navbar = () => {
       } catch (e) {
         // alert("could not sign in");
         //CONSOLE
-        //need to handele the error
       }
     };
 
