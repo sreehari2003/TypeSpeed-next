@@ -82,7 +82,7 @@ const Input = () => {
         context.setInput("");
         setTimeout(() => {
           setSentPost(false);
-        }, [1000 * 10]);
+        }, [1000]);
       }, [5000]);
       context.changeKey("");
       setSentPost(true);
