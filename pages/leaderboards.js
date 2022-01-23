@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react";
 import classes from "../styles/leader.module.scss";
-const leaderboards = ({ data }) => {
+const leaderboards = () => {
   const [dt, setDt] = useState([]);
+  const [load, setLoad] = useState(false);
   useEffect(() => {
     const callDb = async () => {
       try {
+        setLoad(true);
         const res = await fetch(
           "https://typespeednext.herokuapp.com/api/users"
         );
         const data = await res.json();
         setDt(data.data);
+        setLoad(false);
         if (!res) throw new Error();
       } catch (e) {
         console.log(e);
@@ -17,43 +20,50 @@ const leaderboards = ({ data }) => {
     };
     callDb();
   }, []);
-  return (
-    <div className={classes.leader}>
-      <h1>LeaderBoards</h1>
-      <div className={classes.leaderbox}>
-        <div className={classes.stats}>
-          <table>
-            <tbody>
-              <tr>
-                <th>Ranking</th>
-                <th>Name</th>
-                <th>Score</th>
-                <th>Profile</th>
-              </tr>
-              {dt.map((el, index) => (
-                <tr key={index}>
-                  <td>{index + 1}</td>
-                  <td>{el.name}</td>
-                  <td>{el.score}</td>
-                  <td>
-                    <img src={el.image} />
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+  if (load) {
+    return (
+      <div className={classes.leader}>
+        <h1>LeaderBoards</h1>
+        <div className={classes.leaderbox}>
+          <div className={classes.stats}>
+            <h3>LOADING.....</h3>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    return (
+      <div className={classes.leader}>
+        <h1>LeaderBoards</h1>
+        <div className={classes.leaderbox}>
+          <div className={classes.stats}>
+            <table>
+              <tbody>
+                <tr>
+                  <th>Ranking</th>
+                  <th>Name</th>
+                  <th>Score</th>
+                  <th>Profile</th>
+                </tr>
+                {dt.map((el, index) => (
+                  <tr key={index}>
+                    <td>{index + 1}</td>
+                    <td>{el.name}</td>
+                    <td>{el.score}</td>
+                    <td>
+                      <img src={el.image} />
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // return
 };
 
 export default leaderboards;
-
-// export const getStaticProps = async () => {
-//   return {
-//     props: {
-//       data: data.data,
-//     },
-//   };
-// };
