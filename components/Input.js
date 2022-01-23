@@ -4,7 +4,7 @@ import Text from "./Text";
 import InfoContext from "../context/ScoreContext";
 import Timer from "./Timer";
 const Input = () => {
-  const [tm, setTm] = useState(16);
+  const [tm, setTm] = useState(30);
   const context = useContext(InfoContext);
   const [dis, setDis] = useState(false);
   const getInput = (e) => {
@@ -27,12 +27,13 @@ const Input = () => {
       setDis(true);
       clearInterval(tms);
       setTimeout(() => {
-        setTm(16);
+        setTm(30);
         context.reStart();
         setDis(false);
         context.setInput("");
       }, [5000]);
-    }, [16000]);
+      context.changeKey("");
+    }, [15000 * 2]);
   };
   return (
     <div>

@@ -1,9 +1,12 @@
-import React from "react";
-
+import React, { useContext } from "react";
+import InfoContext from "../context/ScoreContext";
 const Timer = ({ val }) => {
+  const context = useContext(InfoContext);
+
   return (
     <div className="time">
-      <div className="box">{val}</div>
+      <div className="box">Time:{val}</div>
+      <div className="box">Score : {context.score}</div>
     </div>
   );
 };
