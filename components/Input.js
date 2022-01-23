@@ -1,12 +1,60 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import TextField from "@material-ui/core/TextField";
 import Text from "./Text";
 import InfoContext from "../context/ScoreContext";
+import axios from "axios";
 import Timer from "./Timer";
 const Input = () => {
   const [tm, setTm] = useState(30);
   const context = useContext(InfoContext);
   const [dis, setDis] = useState(false);
+
+  const [sentPost, setSentPost] = useState(false);
+  const [id, setId] = useState(0);
+  const query = {
+    score: context.highScore,
+  };
+
+  useEffect(() => {
+    if (context.login) {
+      context.cloudData.map((el) => {
+        if (el.UID === context.data.uid) {
+          setId(el._id);
+        }
+      });
+    }
+  }, [context.login]);
+
+  const sentScore = async () => {
+    try {
+      const res = await axios.put(
+        `https://typespeednext.herokuapp.com/api/users/${id}`,
+        // `http://localhost:4000/api/users/61ed3c92df38ab6d06f7a3e1`,
+        query,
+        { headers: { "Access-Control-Allow-Origin": "*" } }
+      );
+      if (!res.ok) throw new Error("Couldn't send score'");
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  useEffect(() => {
+    const getS = async () => {
+      if (context.login) {
+        const sc = await axios.get(
+          `https://typespeednext.herokuapp.com/api/users/${id}`
+        );
+        context.setHs(sc.score);
+      }
+    };
+    getS();
+  }, [context.login]);
+  useEffect(() => {
+    if (sentPost) {
+      sentScore();
+    }
+  }, [sentPost]);
+
   const getInput = (e) => {
     if (e.target.value.endsWith(" ")) {
       context.increaseIndex();
@@ -19,6 +67,7 @@ const Input = () => {
     context.changeKey(e.key);
   };
   let tms;
+
   const focus = () => {
     tms = setInterval(() => {
       setTm((val) => val - 1);
@@ -29,11 +78,15 @@ const Input = () => {
       setTimeout(() => {
         setTm(30);
         context.reStart();
-        setDis(false);
+        // setDis(false);
         context.setInput("");
+        setTimeout(() => {
+          setSentPost(false);
+        }, [1000 * 10]);
       }, [5000]);
       context.changeKey("");
-    }, [15000 * 2]);
+      setSentPost(true);
+    }, [15000 * 0.5]);
   };
   return (
     <div>

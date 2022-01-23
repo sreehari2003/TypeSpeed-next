@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import KeyBoard from "../components/KeyBoard";
 import Input from "../components/Input";
 import Modal from "../modal/Modal";
@@ -12,6 +12,7 @@ const Index = () => {
       try {
         const res = await axios.get(
           "https://typespeednext.herokuapp.com/api/users"
+          // "http://localhost:4000/api/users/"
         );
         context.setCloudData(res.data.data);
       } catch (e) {

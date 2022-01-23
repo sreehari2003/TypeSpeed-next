@@ -78,7 +78,7 @@ const KeyBoard = () => {
                 </li>
               );
             }
-            return <li>{el}</li>;
+            return <li key={index}>{el}</li>;
           })}
         </ul>
         <ul className="row">
@@ -102,7 +102,7 @@ const KeyBoard = () => {
                 </li>
               );
             }
-            return <li>{el}</li>;
+            return <li key={index}>{el}</li>;
           })}
         </ul>
         <ul className="row">
@@ -114,7 +114,7 @@ const KeyBoard = () => {
                 </li>
               );
             }
-            return <li>{el}</li>;
+            return <li key={index}>{el}</li>;
           })}
         </ul>
         <ul className="row">
@@ -126,7 +126,7 @@ const KeyBoard = () => {
                 </li>
               );
             }
-            return <li>{el}</li>;
+            return <li key={index}>{el}</li>;
           })}
         </ul>
         <ul className="row">
@@ -146,7 +146,7 @@ const KeyBoard = () => {
                 );
               }
             }
-            return <li>{el}</li>;
+            return <li key={index}>{el}</li>;
           })}
         </ul>
       </div>

@@ -4,6 +4,7 @@ import InfoContext from "../context/ScoreContext";
 import Link from "next/link";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { authentication } from "../auth/config/fire-baseconfig";
+import axios from "axios";
 const Navbar = () => {
   const context = useContext(InfoContext);
   const [logs, setLog] = useState("Login");
@@ -35,26 +36,29 @@ const Navbar = () => {
   };
   //  ding the post req
 
-  if (context.login) {
-    const sendData = async () => {
-      const query = {
-        name: context.data.displayName,
-        email: context.data.email,
-        UID: context.data.uid,
-        image: context.data.photoURL,
+  useEffect(() => {
+    if (context.login) {
+      const sendData = async () => {
+        const query = {
+          name: context.data.displayName,
+          email: context.data.email,
+          UID: context.data.uid,
+          image: context.data.photoURL,
+          score: context.highScore,
+        };
+        try {
+          await fetch("https://typespeednext.herokuapp.com/api/users", {
+            method: "POST",
+            body: JSON.stringify(query),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
+        } catch (e) {}
       };
-      try {
-        await fetch("https://typespeednext.herokuapp.com/api/users", {
-          method: "POST",
-          body: JSON.stringify(query),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-      } catch (e) {}
-    };
-    sendData();
-  }
+      sendData();
+    }
+  }, [context.login]);
   return (
     <div className="nav">
       <Link href="/">

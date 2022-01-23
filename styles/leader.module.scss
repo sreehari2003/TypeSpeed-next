@@ -6,7 +6,47 @@
 }
 .leader h1 {
   font-size: 50px;
-  padding: 20px;
+  padding: 10px;
   text-align: center;
   font-family: sans-serif;
+}
+.leaderbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+  // background: Red;
+}
+.stats {
+  margin-bottom: 100px;
+  border-radius: 13px;
+  // margin-top: -100px;
+  height: 600px;
+  width: 900px;
+  background: white;
+  overflow-y: scroll;
+}
+.stats table {
+  width: 100%;
+}
+.stats th {
+  font-family: sans-serif;
+  border-left: 1px solid black;
+  padding: 10px;
+}
+.stats th:nth-child(1) {
+  border-left: 0px solid black;
+}
+.stats table th {
+  border-bottom: 1px solid black;
+}
+
+.stats td {
+  padding: 10px;
+  text-align: center;
+  border-left: 1px solid black;
+  border-bottom: 1px solid black;
+}
+.stats td:first-child {
+  border-left: none;
 }
