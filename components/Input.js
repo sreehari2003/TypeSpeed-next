@@ -86,7 +86,7 @@ const Input = () => {
       }, [5000]);
       context.changeKey("");
       setSentPost(true);
-    }, [15000 * 0.5]);
+    }, [15000 * 2]);
   };
   return (
     <div>
