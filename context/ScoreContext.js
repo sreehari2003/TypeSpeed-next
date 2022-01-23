@@ -10,6 +10,13 @@ const InfoContext = React.createContext({
   log: () => {},
   upData: () => {},
   reStart: () => {},
+  setHs: () => {},
+  setCloudData: () => {},
+  setUid: () => {},
+  uid: "",
+  cloudData: [],
+  highScore: 0,
+  score: 0,
   data: [],
   word: "",
   key: "",
@@ -23,15 +30,31 @@ export const InfoContextProvider = (props) => {
   const [key, setKey] = useState("");
   const [login, setLogin] = useState(false);
   const [data, setData] = useState([]);
+  const [highScore, setHighScore] = useState(0);
+  const [cloudData, setCloudData] = useState([]);
+  const [uid, setUid] = useState("");
+  const [userInfo, setUserInfo] = useState({});
 
+  const userrs = (val) => {
+    setUserInfo(val);
+  };
+  const setID = (val) => {
+    setUid(val);
+  };
+  const setHs = (val) => {
+    setHighScore(val);
+  };
   const upData = (el) => {
     setData(el);
   };
-  const log = () => {
-    setLogin(true);
+  const log = (bool) => {
+    setLogin(bool);
   };
   const changeKey = (val) => {
     setKey(val);
+    setTimeout(() => {
+      setKey("");
+    }, [500]);
   };
 
   const ScoreIncrease = () => {
@@ -48,6 +71,10 @@ export const InfoContextProvider = (props) => {
     setWord(val);
   };
   const provider = {
+    userrs,
+    userInfo,
+    uid,
+    setID,
     reStart,
     data,
     upData,
@@ -61,6 +88,10 @@ export const InfoContextProvider = (props) => {
     key,
     log,
     login,
+    setHs,
+    highScore,
+    setCloudData,
+    cloudData,
   };
 
   return (

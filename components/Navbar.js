@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import Button from "@material-ui/core/Button";
 import InfoContext from "../context/ScoreContext";
 import Link from "next/link";
@@ -13,27 +13,49 @@ const Navbar = () => {
     const getAuth = async () => {
       try {
         const res = await signInWithPopup(authentication, provider);
-        context.upData(res);
-        //console log need to remove
-        console.log(res);
+        context.upData(res.user);
         setLog("Log Out");
-        context.log();
+        context.log(true);
         if (!res.ok) throw new Error("Couldn't sign'");
       } catch (e) {
         // alert("could not sign in");
         //CONSOLE
-        console.log("sad");
         //need to handele the error
       }
     };
+
     //login and logout with condition
     if (context.login) {
       //logout function
+      context.log(false);
+      setLog("LogIn");
     } else {
       //login function
       getAuth();
     }
   };
+  //  ding the post req
+
+  if (context.login) {
+    const sendData = async () => {
+      const query = {
+        name: context.data.displayName,
+        email: context.data.email,
+        UID: context.data.uid,
+        image: context.data.photoURL,
+      };
+      try {
+        await fetch("https://typespeednext.herokuapp.com/api/users", {
+          method: "POST",
+          body: JSON.stringify(query),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+      } catch (e) {}
+    };
+    sendData();
+  }
   return (
     <div className="nav">
       <Link href="/">
@@ -44,10 +66,10 @@ const Navbar = () => {
           {logs}
         </Button>
         <Button size="large" className="btn">
-          LeaderBoards
+          <Link href="/leaderboards">LeaderBoards</Link>
         </Button>
         <Button size="large" className="btn">
-          score : {context.score}
+          Highscore : {context.highScore}
         </Button>
         {/* conditionol rendering */}
         {context.login && (

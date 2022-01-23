@@ -12,7 +12,7 @@ const profile = () => {
     } else {
       router.push("/");
     }
-  });
+  }, [ctx.login]);
 
   if (!ctx.login) {
     return null;
