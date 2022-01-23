@@ -8,7 +8,6 @@ const profile = () => {
   const ctx = useContext(InfoContext);
   useEffect(() => {
     if (ctx.login) {
-      console.log("loggedin");
     } else {
       router.push("/");
     }
