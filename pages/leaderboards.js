@@ -1,7 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import classes from "../styles/leader.module.scss";
 const leaderboards = ({ data }) => {
-  console.log(data);
+  const [dt, setDt] = useState([]);
+  useEffect(() => {
+    const callDb = async () => {
+      try {
+        const res = await fetch(
+          "https://typespeednext.herokuapp.com/api/users"
+        );
+        const data = await res.json();
+        setDt(data.data);
+        if (!res) throw new Error();
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    callDb();
+  }, []);
   return (
     <div className={classes.leader}>
       <h1>LeaderBoards</h1>
@@ -15,7 +30,7 @@ const leaderboards = ({ data }) => {
                 <th>Score</th>
                 <th>Profile</th>
               </tr>
-              {data.map((el, index) => (
+              {dt.map((el, index) => (
                 <tr key={index}>
                   <td>{index + 1}</td>
                   <td>{el.name}</td>
@@ -35,13 +50,10 @@ const leaderboards = ({ data }) => {
 
 export default leaderboards;
 
-export const getStaticProps = async () => {
-  const res = await fetch("https://typespeednext.herokuapp.com/api/users");
-  const data = await res.json();
-
-  return {
-    props: {
-      data: data.data,
-    },
-  };
-};
+// export const getStaticProps = async () => {
+//   return {
+//     props: {
+//       data: data.data,
+//     },
+//   };
+// };

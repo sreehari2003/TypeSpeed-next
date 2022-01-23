@@ -12,7 +12,6 @@ const Index = () => {
       try {
         const res = await axios.get(
           "https://typespeednext.herokuapp.com/api/users"
-          // "http://localhost:4000/api/users/"
         );
         context.setCloudData(res.data.data);
       } catch (e) {
