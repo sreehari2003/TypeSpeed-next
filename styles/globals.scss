@@ -138,6 +138,7 @@ h1 {
   flex-wrap: wrap;
   border: 2px solid black;
 }
+
 .text {
   margin: 10px 12px 0;
   font-size: 20px;
@@ -199,4 +200,43 @@ h3 {
   padding: 1px 7px;
   // margin-left: 200px;
   font-size: 30px;
+}
+.burger {
+  display: none;
+  & span {
+    display: none;
+  }
+}
+.btn:nth-child(4) {
+  display: none !important;
+}
+@media (max-width: 614px) {
+  .text-box {
+    // background: red;
+    height: 50vh;
+  }
+  .cover {
+    display: none;
+  }
+  .btn {
+    display: none !important;
+  }
+
+  .btn:nth-child(4) {
+    display: block !important;
+    padding: 2px 3px;
+    font-size: 20px;
+  }
+  .burger {
+    // background:red;
+    display: block;
+    // height: 100%;
+  }
+  h1 {
+    font-size: 30px;
+    padding: none;
+  }
+  .nav {
+    flex-direction: space-between;
+  }
 }
