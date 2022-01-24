@@ -34,6 +34,7 @@ export const InfoContextProvider = (props) => {
   const [cloudData, setCloudData] = useState([]);
   const [uid, setUid] = useState("");
   const [userInfo, setUserInfo] = useState({});
+  const [wordChange, setWordChange] = useState(false);
 
   const userrs = (val) => {
     setUserInfo(val);
@@ -63,6 +64,7 @@ export const InfoContextProvider = (props) => {
   const reStart = () => {
     setIndex(0);
     setScore(0);
+    setWordChange(!wordChange);
   };
   const increaseIndex = () => {
     setIndex((index) => index + 1);
@@ -92,6 +94,7 @@ export const InfoContextProvider = (props) => {
     highScore,
     setCloudData,
     cloudData,
+    wordChange,
   };
 
   return (

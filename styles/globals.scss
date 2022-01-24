@@ -25,7 +25,10 @@ a {
   --colour2: #333;
   --colour3: #444;
 }
-
+h4 {
+  text-align: center;
+  font-size: 30px;
+}
 .cover {
   background-color: var(--black);
   font: 300 12px "Open Sans", sans-serif;
@@ -55,7 +58,11 @@ a {
   margin: 0 0 7px;
   line-height: 50px;
 }
-
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .row li {
   flex: 1;
   margin: 0 6px 0 0;
