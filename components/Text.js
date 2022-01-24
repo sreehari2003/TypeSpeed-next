@@ -4,23 +4,21 @@ import InfoContext from "../context/ScoreContext";
 import axios from "axios";
 const Text = () => {
   const context = useContext(InfoContext);
-  const [texts, setText] = useState("");
+  const [texts, setText] = useState("a");
   const [loading, setLoading] = useState(false);
 
   const getData = async () => {
     setLoading(true);
-    // const word = await axios.get("http://localhost:4000/api/text");
     const word = await fetch("https://typespeednext.herokuapp.com/api/text");
     const datass = await word.json();
-    console.log(datass);
     setText(datass.data);
     setLoading(false);
   };
   useEffect(() => {
     getData();
-  }, [context.wordChange]);
-  const w = texts.toString().toLowerCase().split(" ");
-  console.log(w);
+    context.change(0);
+  }, []);
+  const w = texts.toLowerCase().split(" ");
   const text = w;
   const val = context.index;
   const input = context.word;
@@ -29,7 +27,7 @@ const Text = () => {
       context.ScoreIncrease();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [val, input]);
+  }, [input]);
 
   if (loading) {
     return (

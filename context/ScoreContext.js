@@ -36,6 +36,10 @@ export const InfoContextProvider = (props) => {
   const [userInfo, setUserInfo] = useState({});
   const [wordChange, setWordChange] = useState(false);
 
+  const change = (value) => {
+    setScore(value);
+  };
+
   const userrs = (val) => {
     setUserInfo(val);
   };
@@ -95,6 +99,7 @@ export const InfoContextProvider = (props) => {
     setCloudData,
     cloudData,
     wordChange,
+    change,
   };
 
   return (
