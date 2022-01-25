@@ -37,6 +37,7 @@ const Navbar = () => {
   //  ding the post req
 
   useEffect(() => {
+    //sending user info to server when user logged in
     if (context.login) {
       const sendData = async () => {
         const query = {
@@ -80,7 +81,7 @@ const Navbar = () => {
             <Link href="/profile">Profile</Link>
           </Button>
         )}
-        <Button size="large" className="btn">
+        <Button size="large" className="btn last">
           <AiOutlineMenu />
         </Button>
       </div>

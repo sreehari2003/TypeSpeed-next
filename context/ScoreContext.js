@@ -76,6 +76,7 @@ export const InfoContextProvider = (props) => {
   const setInput = (val) => {
     setWord(val);
   };
+
   const provider = {
     userrs,
     userInfo,

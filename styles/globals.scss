@@ -207,10 +207,11 @@ h3 {
     display: none;
   }
 }
-.btn:nth-child(4) {
+
+.last {
   display: none !important;
 }
-@media (max-width: 614px) {
+@media (max-width: 750px) {
   .text-box {
     // background: red;
     height: 50vh;
@@ -222,7 +223,7 @@ h3 {
     display: none !important;
   }
 
-  .btn:nth-child(4) {
+  .last {
     display: block !important;
     padding: 2px 3px;
     font-size: 20px;
@@ -238,5 +239,17 @@ h3 {
   }
   .nav {
     flex-direction: space-between;
+  }
+  .field {
+    margin-top: 70px;
+  }
+  .d {
+    position: relative;
+  }
+  .btnOk {
+    bottom: 20px;
+    position: absolute;
+    display: block !important;
+    margin-bottom: 50px !important;
   }
 }

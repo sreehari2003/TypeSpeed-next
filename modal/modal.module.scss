@@ -9,7 +9,7 @@
 }
 
 .modal {
-  position: fixed;
+  // position: fixed;
   top: 8.5vh;
   left: 5%;
   width: 90%;
@@ -21,6 +21,13 @@
   animation: slide-down 300ms ease-out forwards;
 }
 
+.md {
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: static;
+}
 @media (min-width: 500px) {
   .modal {
     width: 30rem;
@@ -57,4 +64,19 @@
 .box {
   margin-left: 30px;
   background-color: red;
+}
+
+@media (max-width: 750px) {
+  .modal {
+    height: 600px;
+    // background: blue;
+    width: 30rem;
+    // left: calc(50% - 20rem);
+  }
+}
+.md {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: static;
 }

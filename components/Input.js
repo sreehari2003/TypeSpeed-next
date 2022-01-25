@@ -17,6 +17,7 @@ const Input = () => {
 
   useEffect(() => {
     if (context.login) {
+      //getting the uuser id by looping through the DB
       context.cloudData.map((el) => {
         if (el.UID === context.data.uid) {
           setId(el._id);
@@ -27,9 +28,9 @@ const Input = () => {
 
   const sentScore = async () => {
     try {
+      //sending the put request when highScore changes
       const res = await axios.put(
         `https://typespeednext.herokuapp.com/api/users/${id}`,
-        // `http://localhost:4000/api/users/61ed3c92df38ab6d06f7a3e1`,
         query,
         { headers: { "Access-Control-Allow-Origin": "*" } }
       );
@@ -39,6 +40,7 @@ const Input = () => {
     }
   };
   useEffect(() => {
+    //setting the highscore as ui after sending the get req
     const getS = async () => {
       if (context.login) {
         const sc = await axios.get(
@@ -56,11 +58,12 @@ const Input = () => {
   }, [sentPost]);
 
   const getInput = (e) => {
-    if (e.target.value.endsWith(" ")) {
+    const val = e.target.value.toLowerCase();
+    if (val.endsWith(" ")) {
       context.increaseIndex();
       context.setInput("");
     } else {
-      context.setInput(e.target.value);
+      context.setInput(val);
     }
   };
   const getKey = (e) => {
@@ -71,6 +74,7 @@ const Input = () => {
   const focus = () => {
     tms = setInterval(() => {
       setTm((val) => val - 1);
+      //reducing the timer after everry one second
     }, [1000]);
     setTimeout(() => {
       setDis(true);
@@ -81,10 +85,11 @@ const Input = () => {
         setDis(false);
         context.setInput("");
         setSentPost(false);
-
+        //input go back to initial stage after 35s
       }, [5000]);
       context.changeKey("");
       setSentPost(true);
+      //30 s as the timer
     }, [15000 * 2]);
   };
   return (
