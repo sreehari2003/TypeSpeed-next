@@ -1,7 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import { Dummey } from "./Dummey";
 import InfoContext from "../context/ScoreContext";
-import axios from "axios";
 const Text = () => {
   const context = useContext(InfoContext);
   const [texts, setText] = useState("a");
