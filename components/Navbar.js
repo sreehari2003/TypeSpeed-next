@@ -5,6 +5,7 @@ import Link from "next/link";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { authentication } from "../auth/config/fire-baseconfig";
 import { AiOutlineMenu } from "react-icons/ai";
+import { BsGithub } from "react-icons/bs";
 const Navbar = () => {
   const context = useContext(InfoContext);
   const [logs, setLog] = useState("Login");
@@ -81,6 +82,14 @@ const Navbar = () => {
             <Link href="/profile">Profile</Link>
           </Button>
         )}
+        <Button size="large" className="btn">
+          <a
+            href="https://github.com/sreehari2003/TypeSpeed-next"
+            target="_blank"
+          >
+            <BsGithub />
+          </a>
+        </Button>
         <Button size="large" className="btn last">
           <AiOutlineMenu />
         </Button>
