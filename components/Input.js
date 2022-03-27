@@ -18,7 +18,7 @@ const Input = () => {
       };
       //sending the patch request when highScore changes
       const res = await axios.patch(
-        `http://localhost:4000/api/users/${cookie.get("id")}`,
+        `https://typespeednext.herokuapp.com/${cookie.get("id")}`,
         obj,
         {
           headers: {
