@@ -4,59 +4,37 @@ import Text from "./Text";
 import InfoContext from "../context/ScoreContext";
 import axios from "axios";
 import Timer from "./Timer";
+import cookie from "js-cookie";
 const Input = () => {
   const [tm, setTm] = useState(30);
   const context = useContext(InfoContext);
   const [dis, setDis] = useState(false);
 
-  const [sentPost, setSentPost] = useState(false);
-  const [id, setId] = useState(0);
-  const query = {
-    score: context.highScore,
-  };
-
-  useEffect(() => {
-    if (context.login) {
-      //getting the uuser id by looping through the DB
-      context.cloudData.map((el) => {
-        if (el.UID === context.data.uid) {
-          setId(el._id);
-        }
-      });
-    }
-  }, [context.login]);
-
   const sentScore = async () => {
     try {
-      //sending the put request when highScore changes
-      const res = await axios.put(
-        `https://typespeednext.herokuapp.com/api/users/${id}`,
-        query,
-        { headers: { "Access-Control-Allow-Origin": "*" } }
+      const obj = {
+        // score: context.score,
+        score: context.score,
+      };
+      //sending the patch request when highScore changes
+      const res = await axios.patch(
+        `http://localhost:4000/api/users/${cookie.get("id")}`,
+        obj,
+        {
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+            authorization: `Bearer ${cookie.get("jwt")}`,
+          },
+        }
       );
-      if (!res.ok) throw new Error("Couldn't send score'");
+      console.log(res.data);
+      if (!res.ok) throw new Error(res.data.message);
+      context.high(res.data.data.score);
+      console.log(res.data.message);
     } catch (e) {
       console.log(e);
     }
   };
-  useEffect(() => {
-    //setting the highscore as ui after sending the get req
-    const getS = async () => {
-      if (context.login) {
-        const sc = await axios.get(
-          `https://typespeednext.herokuapp.com/api/users/${id}`
-        );
-        context.setHs(sc.score);
-      }
-    };
-    getS();
-  }, [context.login]);
-  useEffect(() => {
-    if (sentPost) {
-      sentScore();
-    }
-  }, [sentPost]);
-
   const getInput = (e) => {
     const val = e.target.value.toLowerCase();
     if (val.endsWith(" ")) {
@@ -79,16 +57,18 @@ const Input = () => {
     setTimeout(() => {
       setDis(true);
       clearInterval(tms);
-      setTimeout(() => {
+      setTimeout(async () => {
+        // sentScore();
+        context.high(context.score);
+        await sentScore();
         setTm(30);
         context.reStart();
+
         setDis(false);
         context.setInput("");
-        setSentPost(false);
         //input go back to initial stage after 35s
       }, [5000]);
       context.changeKey("");
-      setSentPost(true);
       //30 s as the timer
     }, [15000 * 2]);
   };
