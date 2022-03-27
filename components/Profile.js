@@ -19,7 +19,7 @@ const Profile = () => {
         try {
           const id = cookie.get("id");
           const jwt = cookie.get("jwt");
-          const url = `https://typespeednext.herokuapp.com/${id}`;
+          const url = `https://typespeednext.herokuapp.com/api/users/${id}`;
           const res = await axios.get(url, {
             headers: {
               authorization: `Bearer ${jwt}`,
