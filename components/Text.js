@@ -7,7 +7,7 @@ const Text = () => {
 
   const getData = async () => {
     setLoading(true);
-    const word = await fetch("http://localhost:4000/api/text");
+    const word = await fetch("https://typespeednext.herokuapp.com/api/text");
     const datass = await word.json();
     setText(datass.data);
     setLoading(false);

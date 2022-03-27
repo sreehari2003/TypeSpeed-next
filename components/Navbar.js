@@ -20,7 +20,7 @@ const Navbar = () => {
 
   const sendData = async (query) => {
     try {
-      const res = await fetch("http://localhost:4000/api/users", {
+      const res = await fetch("https://typespeednext.herokuapp.com/api/users", {
         method: "POST",
         body: JSON.stringify(query),
         headers: {
