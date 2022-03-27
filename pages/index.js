@@ -12,7 +12,7 @@ const Index = () => {
     const getData = async () => {
       try {
         const res = await axios.get(
-          `https://typespeednext.herokuapp.com/${cookie.get("id")}`,
+          `https://typespeednext.herokuapp.com/api/users/${cookie.get("id")}`,
           {
             headers: {
               authorization: `Bearer ${cookie.get("jwt")}`,
