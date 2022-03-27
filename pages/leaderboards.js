@@ -7,9 +7,7 @@ const leaderboards = () => {
     const callDb = async () => {
       try {
         setLoad(true);
-        const res = await fetch(
-          "https://typespeednext.herokuapp.com/api/users"
-        );
+        const res = await fetch("http://localhost:4000/api/users");
         const data = await res.json();
         setDt(data.data);
         setLoad(false);

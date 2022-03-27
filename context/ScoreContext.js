@@ -1,5 +1,7 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import cookie from "js-cookie";
+import axios from "axios";
 
 //context data
 const InfoContext = React.createContext({
@@ -29,29 +31,26 @@ export const InfoContextProvider = (props) => {
   const [index, setIndex] = useState(0);
   const [key, setKey] = useState("");
   const [login, setLogin] = useState(false);
-  const [data, setData] = useState([]);
-  const [highScore, setHighScore] = useState(0);
-  const [cloudData, setCloudData] = useState([]);
-  const [uid, setUid] = useState("");
-  const [userInfo, setUserInfo] = useState({});
   const [wordChange, setWordChange] = useState(false);
+  const [highscore, setHs] = useState(0);
+
+  useEffect(() => {
+    const id = cookie.get("id");
+    const jwt = cookie.get("jwt");
+    if (jwt && id) {
+      setLogin(true);
+    } else {
+      setLogin(false);
+    }
+  }, []);
 
   const change = (value) => {
     setScore(value);
   };
+  const high = (val) => {
+    setHs(val);
+  };
 
-  const userrs = (val) => {
-    setUserInfo(val);
-  };
-  const setID = (val) => {
-    setUid(val);
-  };
-  const setHs = (val) => {
-    setHighScore(val);
-  };
-  const upData = (el) => {
-    setData(el);
-  };
   const log = (bool) => {
     setLogin(bool);
   };
@@ -78,13 +77,7 @@ export const InfoContextProvider = (props) => {
   };
 
   const provider = {
-    userrs,
-    userInfo,
-    uid,
-    setID,
     reStart,
-    data,
-    upData,
     score,
     setInput,
     ScoreIncrease,
@@ -95,12 +88,10 @@ export const InfoContextProvider = (props) => {
     key,
     log,
     login,
-    setHs,
-    highScore,
-    setCloudData,
-    cloudData,
     wordChange,
     change,
+    high,
+    highscore,
   };
 
   return (

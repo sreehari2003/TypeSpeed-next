@@ -5,26 +5,29 @@ import Modal from "../modal/Modal";
 import Button from "@material-ui/core/Button";
 import axios from "axios";
 import InfoContext from "../context/ScoreContext";
+import cookie from "js-cookie";
 const Index = () => {
   const context = useContext(InfoContext);
   useEffect(() => {
     const getData = async () => {
       try {
         const res = await axios.get(
-          "https://typespeednext.herokuapp.com/api/users"
+          `http://localhost:4000/api/users/${cookie.get("id")}`,
+          {
+            headers: {
+              authorization: `Bearer ${cookie.get("jwt")}`,
+            },
+          }
         );
-        context.setCloudData(res.data.data);
+        context.high(res.data.datas.score);
       } catch (e) {
         console.log(e);
       }
     };
-    getData();
-  }, [context.login]);
-  useEffect(() => {
-    if (context.score >= context.highScore) {
-      context.setHs(context.score);
+    if (context.login) {
+      getData();
     }
-  }, [context.score]);
+  }, [context.login]);
 
   return (
     <>
