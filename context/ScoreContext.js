@@ -26,7 +26,7 @@ const InfoContext = React.createContext({
 });
 
 export const InfoContextProvider = (props) => {
-  const [score, setScore] = useState(0);
+  const [score, setScore] = useState(-1);
   const [word, setWord] = useState("");
   const [index, setIndex] = useState(0);
   const [key, setKey] = useState("");
