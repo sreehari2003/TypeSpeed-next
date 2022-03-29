@@ -2,7 +2,7 @@ import React, { useEffect, useContext } from "react";
 import KeyBoard from "../components/KeyBoard";
 import Input from "../components/Input";
 import Modal from "../modal/Modal";
-import Button from "@material-ui/core/Button";
+import Button from "@mui/material/Button";
 import axios from "axios";
 import InfoContext from "../context/ScoreContext";
 import cookie from "js-cookie";

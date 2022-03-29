@@ -1,5 +1,4 @@
 import React, { useContext, useState, useEffect } from "react";
-import Button from "@material-ui/core/Button";
 import InfoContext from "../context/ScoreContext";
 import Link from "next/link";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
@@ -7,7 +6,7 @@ import { authentication } from "../auth/config/fire-baseconfig";
 import { AiOutlineMenu, AiFillQuestionCircle } from "react-icons/ai";
 import { BsGithub } from "react-icons/bs";
 import cookie from "js-cookie";
-
+import Button from "@mui/material/Button";
 const Navbar = () => {
   useEffect(() => {
     if (cookie.get("id") && cookie.get("jwt")) {

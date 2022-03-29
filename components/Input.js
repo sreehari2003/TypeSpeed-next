@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import TextField from "@material-ui/core/TextField";
+import TextField from "@mui/material/TextField";
 import Text from "./Text";
 import InfoContext from "../context/ScoreContext";
 import axios from "axios";
