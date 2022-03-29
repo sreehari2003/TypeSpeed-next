@@ -9,8 +9,8 @@
 }
 
 .modal {
-  // position: fixed;
-  top: 8.5vh;
+  position: fixed;
+  top: 8vh;
   left: 5%;
   width: 90%;
   background-color: white;
@@ -22,7 +22,7 @@
 }
 
 .md {
-  margin-top: 100px;
+  margin-top: 90px;
   display: flex;
   justify-content: center;
   align-items: center;

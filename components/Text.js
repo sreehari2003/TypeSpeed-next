@@ -1,38 +1,44 @@
 import React, { useState, useContext, useEffect } from "react";
 import InfoContext from "../context/ScoreContext";
+import CircularProgress, {
+  CircularProgressProps,
+} from "@mui/material/CircularProgress";
 const Text = () => {
   const context = useContext(InfoContext);
-  const [texts, setText] = useState("a");
-  const [loading, setLoading] = useState(false);
+  const [texts, setText] = useState(" ");
+  const [loading, setLoading] = useState(true);
 
   const getData = async () => {
     setLoading(true);
-    const word = await fetch("https://typespeednext.herokuapp.com/api/text");
+    const url = "https://typespeednext.herokuapp.com/api/text";
+    // const url = "http://127.0.0.1:4000/api/text";
+    const word = await fetch(url);
     const datass = await word.json();
     setText(datass.data);
     setLoading(false);
   };
   useEffect(() => {
     getData();
-    context.change(0);
+    // context.change(0);
   }, []);
   const w = texts.toLowerCase().split(" ");
   const text = w;
   const val = context.index;
   const input = context.word;
   useEffect(() => {
-    if (text[val] === input) {
+    if (text[val] === input && !loading) {
       context.ScoreIncrease();
+      console.log(context.score, "score is");
+      console.log(context.highScore, "high is");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [input]);
 
   if (loading) {
     return (
-      <div className="text-box">
-        <div className="flex">
-          <h4>Loading...</h4>
-        </div>
+      <div className="flex" style={{ textAlign: "center", height: "157px" }}>
+        {/* <h4>Loading...</h4> */}
+        <CircularProgress />
       </div>
     );
   }

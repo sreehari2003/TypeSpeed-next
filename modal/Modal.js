@@ -1,10 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import classes from "./modal.module.scss";
 import { createPortal } from "react-dom";
-
+import ScoreContext from "../context/ScoreContext";
 const Backdrop = (props) => {
+  const ctx = useContext(ScoreContext);
+  const close = () => {
+    props.onClose();
+    ctx.changeMd();
+  };
   return (
-    <div className={classes.backdrop} onClick={props.onClose}>
+    <div className={classes.backdrop} onClick={close}>
       {props.children}
     </div>
   );
