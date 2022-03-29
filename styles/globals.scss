@@ -132,7 +132,12 @@ h1 {
 }
 
 //text
-
+button {
+  color: black !important;
+  & a {
+    color: black !important;
+  }
+}
 .text-box {
   height: 22vh;
   // background: #ff5c8a;

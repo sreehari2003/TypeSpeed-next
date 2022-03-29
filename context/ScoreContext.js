@@ -33,6 +33,7 @@ export const InfoContextProvider = (props) => {
   const [login, setLogin] = useState(false);
   const [wordChange, setWordChange] = useState(false);
   const [highscore, setHs] = useState(0);
+  const [md, showMd] = useState(false);
 
   useEffect(() => {
     const id = cookie.get("id");
@@ -44,11 +45,12 @@ export const InfoContextProvider = (props) => {
     }
   }, []);
 
-  const change = (value) => {
-    setScore(value);
-  };
+  // const change = (value) => {
+  //   setScore(value);
+  // };
   const high = (val) => {
     setHs(val);
+    console.log("highscore updated");
   };
 
   const log = (bool) => {
@@ -68,6 +70,7 @@ export const InfoContextProvider = (props) => {
     setIndex(0);
     setScore(0);
     setWordChange(!wordChange);
+    console.log("reset function called");
   };
   const increaseIndex = () => {
     setIndex((index) => index + 1);
@@ -75,8 +78,12 @@ export const InfoContextProvider = (props) => {
   const setInput = (val) => {
     setWord(val);
   };
+  const changeMd = () => {
+    showMd((el) => !el);
+  };
 
   const provider = {
+    changeMd,
     reStart,
     score,
     setInput,
@@ -89,9 +96,9 @@ export const InfoContextProvider = (props) => {
     log,
     login,
     wordChange,
-    change,
     high,
     highscore,
+    md,
   };
 
   return (

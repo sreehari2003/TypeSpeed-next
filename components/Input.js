@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import TextField from "@material-ui/core/TextField";
+import TextField from "@mui/material/TextField";
 import Text from "./Text";
 import InfoContext from "../context/ScoreContext";
 import axios from "axios";
@@ -14,19 +14,20 @@ const Input = () => {
     try {
       const obj = {
         // score: context.score,
-        score: context.score,
+        score: context.highScore,
       };
+      console.log(obj);
       //sending the patch request when highScore changes
-      const res = await axios.patch(
-        `https://typespeednext.herokuapp.com/api/users/${cookie.get("id")}`,
-        obj,
-        {
-          headers: {
-            "Access-Control-Allow-Origin": "*",
-            authorization: `Bearer ${cookie.get("jwt")}`,
-          },
-        }
-      );
+      const url = `https://typespeednext.herokuapp.com/api/users/${cookie.get(
+        "id"
+      )}`;
+      // const url = `http://127.0.0.1:4000/api/users/${cookie.get("id")}`;
+      const res = await axios.patch(url, obj, {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          authorization: `Bearer ${cookie.get("jwt")}`,
+        },
+      });
       console.log(res.data);
       if (!res.ok) throw new Error(res.data.message);
       context.high(res.data.data.score);
@@ -58,8 +59,8 @@ const Input = () => {
       setDis(true);
       clearInterval(tms);
       setTimeout(async () => {
+        console.log(context.highScore);
         // sentScore();
-        context.high(context.score);
         await sentScore();
         setTm(30);
         context.reStart();
@@ -70,6 +71,8 @@ const Input = () => {
       }, [5000]);
       context.changeKey("");
       //30 s as the timer
+      console.log("score from fun", context.score);
+      context.high(context.score);
     }, [15000 * 2]);
   };
   return (

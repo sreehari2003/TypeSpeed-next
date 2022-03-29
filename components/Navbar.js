@@ -1,13 +1,12 @@
 import React, { useContext, useState, useEffect } from "react";
-import Button from "@material-ui/core/Button";
 import InfoContext from "../context/ScoreContext";
 import Link from "next/link";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { authentication } from "../auth/config/fire-baseconfig";
-import { AiOutlineMenu } from "react-icons/ai";
+import { AiOutlineMenu, AiFillQuestionCircle } from "react-icons/ai";
 import { BsGithub } from "react-icons/bs";
 import cookie from "js-cookie";
-
+import Button from "@mui/material/Button";
 const Navbar = () => {
   useEffect(() => {
     if (cookie.get("id") && cookie.get("jwt")) {
@@ -20,7 +19,9 @@ const Navbar = () => {
 
   const sendData = async (query) => {
     try {
-      const res = await fetch("https://typespeednext.herokuapp.com/api/users", {
+      const url = "https://typespeednext.herokuapp.com/api/users";
+      // const url = "http://127.0.0.1:4000/api/users";
+      const res = await fetch(url, {
         method: "POST",
         body: JSON.stringify(query),
         headers: {
@@ -58,7 +59,7 @@ const Navbar = () => {
       } catch (e) {
         // alert("could not sign in");
         //CONSOLE
-        alert(e);
+        console.log("failed to login", "user closed the popup");
       }
     };
 
@@ -99,10 +100,13 @@ const Navbar = () => {
           href="https://github.com/sreehari2003/TypeSpeed-next"
           target="_blank"
         >
-          <Button size="large" className="btn git">
-            <BsGithub />
+          <Button size="large" className="btn ">
+            <BsGithub style={{ fontSize: "25px" }} />
           </Button>
         </a>
+        <Button size="large" className="btn" onClick={context.changeMd}>
+          <AiFillQuestionCircle style={{ fontSize: "25px" }} />
+        </Button>
         <Button size="large" className="btn last">
           <AiOutlineMenu />
         </Button>
