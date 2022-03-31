@@ -209,6 +209,17 @@ h3 {
   // margin-left: 200px;
   font-size: 30px;
 }
+.load {
+  text-align: center;
+  height: 157px;
+  @media (min-height: 720px) {
+    height: 205px;
+  }
+  & h4 {
+    padding: 30px;
+    font-size: 20px;
+  }
+}
 .burger {
   display: none;
   & span {

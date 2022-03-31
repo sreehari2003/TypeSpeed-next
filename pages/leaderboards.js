@@ -13,7 +13,10 @@ const leaderboards = () => {
         const data = await res.json();
         setDt(data.data);
         setLoad(false);
-        if (!res) throw new Error();
+        if (!res.ok) {
+          console.log("Error loading");
+          throw new Error();
+        }
       } catch (e) {
         console.log(e);
       }

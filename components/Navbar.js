@@ -78,7 +78,7 @@ const Navbar = () => {
   return (
     <div className="nav">
       <Link href="/">
-        <h1>TypeTest</h1>
+        <h1 style={{ cursor: "pointer" }}>TypeTest</h1>
       </Link>
       <div>
         <Button size="large" className="btn" onClick={auth}>
