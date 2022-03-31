@@ -19,8 +19,8 @@ const Navbar = () => {
 
   const sendData = async (query) => {
     try {
-      const url = "https://typespeednext.herokuapp.com/api/users";
-      // const url = "http://127.0.0.1:4000/api/users";
+      // const url = "https://typespeednext.herokuapp.com/api/users";
+      const url = "http://127.0.0.1:4000/api/users";
       const res = await fetch(url, {
         method: "POST",
         body: JSON.stringify(query),
@@ -78,7 +78,7 @@ const Navbar = () => {
   return (
     <div className="nav">
       <Link href="/">
-        <h1>TypeTest</h1>
+        <h1 style={{ cursor: "pointer" }}>TypeTest</h1>
       </Link>
       <div>
         <Button size="large" className="btn" onClick={auth}>

@@ -9,32 +9,46 @@ const Input = () => {
   const [tm, setTm] = useState(30);
   const context = useContext(InfoContext);
   const [dis, setDis] = useState(false);
+  const [temp, setTemp] = useState(0);
+  const [sent, setSent] = useState(false);
+
+  const getVal = (val) => {
+    setTemp(val);
+  };
+  useEffect(() => {
+    if (sent) {
+      const sen = async () => {
+        await sentScore();
+      };
+      sen();
+    }
+  }, [sent]);
 
   const sentScore = async () => {
     try {
       const obj = {
-        // score: context.score,
-        score: context.highScore,
+        // score: ,
+        score: temp,
       };
       console.log(obj);
       //sending the patch request when highScore changes
-      const url = `https://typespeednext.herokuapp.com/api/users/${cookie.get(
-        "id"
-      )}`;
-      // const url = `http://127.0.0.1:4000/api/users/${cookie.get("id")}`;
+      // const url = `https://typespeednext.herokuapp.com/api/users/${cookie.get(
+      //   "id"
+      // )}`;
+      const url = `http://127.0.0.1:4000/api/users/${cookie.get("id")}`;
       const res = await axios.patch(url, obj, {
         headers: {
           "Access-Control-Allow-Origin": "*",
           authorization: `Bearer ${cookie.get("jwt")}`,
         },
       });
-      console.log(res.data);
-      if (!res.ok) throw new Error(res.data.message);
-      context.high(res.data.data.score);
+      if (!res.ok || res.status === "error") {
+        console.log(e);
+        throw new Error(res.data.message);
+      }
+      context.setHigh(res.data.data.score);
       console.log(res.data.message);
-    } catch (e) {
-      console.log(e);
-    }
+    } catch (e) {}
   };
   const getInput = (e) => {
     const val = e.target.value.toLowerCase();
@@ -51,6 +65,7 @@ const Input = () => {
   let tms;
 
   const focus = () => {
+    console.log(temp, "from focus");
     tms = setInterval(() => {
       setTm((val) => val - 1);
       //reducing the timer after everry one second
@@ -59,26 +74,26 @@ const Input = () => {
       setDis(true);
       clearInterval(tms);
       setTimeout(async () => {
-        console.log(context.highScore);
-        // sentScore();
-        await sentScore();
+        // await sentScore();
+        setSent(true);
         setTm(30);
         context.reStart();
 
         setDis(false);
         context.setInput("");
+
         //input go back to initial stage after 35s
+        setSent(false);
       }, [5000]);
       context.changeKey("");
+
       //30 s as the timer
-      console.log("score from fun", context.score);
-      context.high(context.score);
     }, [15000 * 2]);
   };
   return (
     <div>
       <Text />
-      <Timer val={tm} />
+      <Timer val={tm} getVal={getVal} />
       <div className="field">
         <TextField
           disabled={dis}

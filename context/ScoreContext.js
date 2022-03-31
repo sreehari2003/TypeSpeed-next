@@ -26,13 +26,13 @@ const InfoContext = React.createContext({
 });
 
 export const InfoContextProvider = (props) => {
-  const [score, setScore] = useState(-1);
+  const [score, setScore] = useState(0);
   const [word, setWord] = useState("");
   const [index, setIndex] = useState(0);
   const [key, setKey] = useState("");
   const [login, setLogin] = useState(false);
   const [wordChange, setWordChange] = useState(false);
-  const [highscore, setHs] = useState(0);
+  const [highscore, setHighscore] = useState(0);
   const [md, showMd] = useState(false);
 
   useEffect(() => {
@@ -44,13 +44,8 @@ export const InfoContextProvider = (props) => {
       setLogin(false);
     }
   }, []);
-
-  // const change = (value) => {
-  //   setScore(value);
-  // };
-  const high = (val) => {
-    setHs(val);
-    console.log("highscore updated");
+  const setHigh = (val) => {
+    setHighscore(val);
   };
 
   const log = (bool) => {
@@ -70,7 +65,6 @@ export const InfoContextProvider = (props) => {
     setIndex(0);
     setScore(0);
     setWordChange(!wordChange);
-    console.log("reset function called");
   };
   const increaseIndex = () => {
     setIndex((index) => index + 1);
@@ -81,8 +75,11 @@ export const InfoContextProvider = (props) => {
   const changeMd = () => {
     showMd((el) => !el);
   };
-
+  const fun = (bool) => {
+    showMd(bool);
+  };
   const provider = {
+    fun,
     changeMd,
     reStart,
     score,
@@ -96,7 +93,7 @@ export const InfoContextProvider = (props) => {
     log,
     login,
     wordChange,
-    high,
+    setHigh,
     highscore,
     md,
   };

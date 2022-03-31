@@ -10,8 +10,8 @@ const Text = () => {
 
   const getData = async () => {
     setLoading(true);
-    const url = "https://typespeednext.herokuapp.com/api/text";
-    // const url = "http://127.0.0.1:4000/api/text";
+    // const url = "https://typespeednext.herokuapp.com/api/text";
+    const url = "http://127.0.0.1:4000/api/text";
     const word = await fetch(url);
     const datass = await word.json();
     setText(datass.data);
@@ -28,17 +28,15 @@ const Text = () => {
   useEffect(() => {
     if (text[val] === input && !loading) {
       context.ScoreIncrease();
-      console.log(context.score, "score is");
-      console.log(context.highScore, "high is");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [input]);
 
   if (loading) {
     return (
-      <div className="flex" style={{ textAlign: "center", height: "157px" }}>
-        {/* <h4>Loading...</h4> */}
+      <div className="flex load">
         <CircularProgress />
+        <h4>Loading...</h4>
       </div>
     );
   }
