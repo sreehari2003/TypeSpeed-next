@@ -32,10 +32,10 @@ const Input = () => {
       };
       console.log(obj);
       //sending the patch request when highScore changes
-      // const url = `https://typespeednext.herokuapp.com/api/users/${cookie.get(
-      //   "id"
-      // )}`;
-      const url = `http://127.0.0.1:4000/api/users/${cookie.get("id")}`;
+      const url = `https://typespeednext.herokuapp.com/api/users/${cookie.get(
+        "id"
+      )}`;
+      // const url = `http://127.0.0.1:4000/api/users/${cookie.get("id")}`;
       const res = await axios.patch(url, obj, {
         headers: {
           "Access-Control-Allow-Origin": "*",

@@ -10,8 +10,8 @@ const Text = () => {
 
   const getData = async () => {
     setLoading(true);
-    // const url = "https://typespeednext.herokuapp.com/api/text";
-    const url = "http://127.0.0.1:4000/api/text";
+    const url = "https://typespeednext.herokuapp.com/api/text";
+    // const url = "http://127.0.0.1:4000/api/text";
     const word = await fetch(url);
     const datass = await word.json();
     setText(datass.data);

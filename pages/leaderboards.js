@@ -6,8 +6,8 @@ const leaderboards = () => {
   useEffect(() => {
     const callDb = async () => {
       try {
-        // const url = "https://typespeednext.herokuapp.com/api/users";
-        const url = "http://127.0.0.1:4000/api/users";
+        const url = "https://typespeednext.herokuapp.com/api/users";
+        // const url = "http://127.0.0.1:4000/api/users";
         setLoad(true);
         const res = await fetch(url);
         const data = await res.json();

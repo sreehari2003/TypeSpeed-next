@@ -11,10 +11,10 @@ const Index = () => {
   useEffect(() => {
     const getData = async () => {
       try {
-        // const url = `https://typespeednext.herokuapp.com/api/users/${cookie.get(
-        //   "id"
-        // )}`;
-        const url = `http://127.0.0.1:4000/api/users/${cookie.get("id")}`;
+        const url = `https://typespeednext.herokuapp.com/api/users/${cookie.get(
+          "id"
+        )}`;
+        // const url = `http://127.0.0.1:4000/api/users/${cookie.get("id")}`;
         const res = await axios.get(url, {
           headers: {
             authorization: `Bearer ${cookie.get("jwt")}`,
