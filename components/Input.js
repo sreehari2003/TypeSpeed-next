@@ -30,7 +30,6 @@ const Input = () => {
         // score: ,
         score: temp,
       };
-      console.log(obj);
       //sending the patch request when highScore changes
       const url = `https://typespeednext.herokuapp.com/api/users/${cookie.get(
         "id"
@@ -65,7 +64,6 @@ const Input = () => {
   let tms;
 
   const focus = () => {
-    console.log(temp, "from focus");
     tms = setInterval(() => {
       setTm((val) => val - 1);
       //reducing the timer after everry one second
