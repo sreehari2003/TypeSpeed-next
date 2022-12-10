@@ -19,7 +19,7 @@ const Navbar = () => {
 
   const sendData = async (query) => {
     try {
-      const url = "https://typespeednext.herokuapp.com/api/users";
+      const url = "https://api-typespeed.onrender.com/api/users";
       // const url = "http://127.0.0.1:4000/api/users";
       const res = await fetch(url, {
         method: "POST",

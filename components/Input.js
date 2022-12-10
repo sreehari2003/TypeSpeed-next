@@ -31,7 +31,7 @@ const Input = () => {
         score: temp,
       };
       //sending the patch request when highScore changes
-      const url = `https://typespeednext.herokuapp.com/api/users/${cookie.get(
+      const url = `https://api-typespeed.onrender.com/api/users/${cookie.get(
         "id"
       )}`;
       // const url = `http://127.0.0.1:4000/api/users/${cookie.get("id")}`;

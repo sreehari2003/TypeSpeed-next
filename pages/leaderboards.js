@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
+import Image from "next/image";
 import classes from "../styles/leader.module.scss";
+
 const leaderboards = () => {
   const [dt, setDt] = useState([]);
   const [load, setLoad] = useState(false);
   useEffect(() => {
     const callDb = async () => {
       try {
-        const url = "https://typespeednext.herokuapp.com/api/users";
+        const url = "https://api-typespeed.onrender.com/api/users";
         // const url = "http://127.0.0.1:4000/api/users";
         setLoad(true);
         const res = await fetch(url);
@@ -57,7 +59,7 @@ const leaderboards = () => {
                     <td>{el.name}</td>
                     <td>{el.score}</td>
                     <td>
-                      <img src={el.image} />
+                      <Image src={el.image} width="100px" height="100px" />
                     </td>
                   </tr>
                 ))}
