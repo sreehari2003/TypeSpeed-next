@@ -23,7 +23,7 @@ const Profile = () => {
         try {
           const id = cookie.get("id");
           const jwt = cookie.get("jwt");
-          const url = `https://typespeednext.herokuapp.com/api/users/${id}`;
+          const url = `https://api-typespeed.onrender.com/api/users/${id}`;
           // const url = `http://127.0.0.1:4000/api/users/${id}`;
 
           const res = await axios.get(url, {
